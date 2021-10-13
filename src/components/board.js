@@ -1,45 +1,51 @@
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import Cell from "./cell";
 const board = [];
-for (let i = 0; i < 9; i++) {
+
+for (let i = 0; i < 81; i++) {
   board.push([]);
-  for (let j = 0; j < 0; j++) {
-    board[board.length - 1].append(null);
-  }
 }
+const row = {};
+const column = {};
+const group = {};
+
+let id = 1;
+
+const style = {};
 const Board = () => {
-  const [row, setRow] = useState({
-    1: {},
-    2: {},
-    3: {},
-    4: {},
-    5: {},
-    6: {},
-    7: {},
-    8: {},
-    9: {},
-  });
-  const [column, setColumn] = useState({
-    1: {},
-    2: {},
-    3: {},
-    4: {},
-    5: {},
-    6: {},
-    7: {},
-    8: {},
-    9: {},
-  });
-  const [group, setGroup] = useState({
-    1: {},
-    2: {},
-    3: {},
-    4: {},
-    5: {},
-    6: {},
-    7: {},
-    8: {},
-    9: {},
-  });
-  return <div>board</div>;
+  console.log(board);
+  useEffect(() => {
+    for (let i = 1; i < 10; i++) {
+      row[i] = {};
+      column[i] = {};
+      group[i] = {};
+    }
+  }, []);
+  const changeBoard = (num, val) => {};
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-evenly",
+        gap: "0",
+        width: "70%",
+      }}
+    >
+      {board.map((block) => {
+        return (
+          <Cell
+            key={(id += 1)}
+            id={id}
+            group={group}
+            column={column}
+            row={row}
+            changeBoard={changeBoard}
+          />
+        );
+      })}
+    </div>
+  );
 };
+
+export default Board;
