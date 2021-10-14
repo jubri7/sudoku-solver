@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import Cell from "./components/cell";
-
-let preBoard = [];
-for (let i = 0; i < 9; i++) {
-  preBoard.push([]);
-  for (let j = 0; j < 9; j++) {
-    preBoard[i].push(null);
-  }
-}
+import useBoard from "./hooks/useBoard";
 
 const row = {};
 const column = {};
@@ -16,14 +9,13 @@ const group = {};
 let id = 1;
 
 const App = () => {
-  const [board, setBoard] = useState(preBoard);
-  useEffect(() => {
-    console.log(board);
-  }, [board]);
-  const changeCell = (i, j, val) => {
-    let newBoard = [...board];
-    newBoard[i][j] = val;
-    setBoard(newBoard);
+  const [board, changeCell, solve, reset] = useBoard();
+  useEffect(() => {}, [board]);
+  const solveButton = () => {
+    solve();
+  };
+  const resetButton = () => {
+    reset();
   };
   return (
     <div>
@@ -53,7 +45,8 @@ const App = () => {
           });
         })}
       </div>
-      <button>Solve</button>
+      <button onClick={solveButton}>Solve</button>
+      <button onClick={resetButton}>Reset</button>
     </div>
   );
 };

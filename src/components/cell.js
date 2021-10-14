@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 
+const style = {
+  padding: 0,
+  height: "100%",
+  width: "100%",
+  textAlign: "center",
+};
 const errorStyle = {
-  error: {
-    backGroundColor: "red",
-    color: "red",
-  },
+  padding: 0,
+  height: "100%",
+  width: "100%",
+  textAlign: "center",
+  backGroundColor: "red",
 };
 
 let cellRow = null;
@@ -12,12 +19,18 @@ let cellColumn = null;
 let cellGroup = null;
 
 const Cell = ({ i, j, board, changeCell }) => {
-  const [cellValue, setCellValue] = useState();
+  const [cellValue, setCellValue] = useState(board[i][j]);
   const [error, setError] = useState(false);
-  useEffect(() => {}, [cellValue]);
+  useEffect(() => {
+    setCellValue(board[i][j]);
+  }, [cellValue, error, board]);
   const handleChange = (e) => {
-    changeCell(i, j, e.target.value);
+    if (parseInt(e.target.value) > 9 || parseInt(e.target.value) < 1) {
+      return;
+    }
     setCellValue(e.target.value);
+    changeCell(i, j, e.target.value);
+    setError(false);
   };
 
   return (
@@ -28,12 +41,7 @@ const Cell = ({ i, j, board, changeCell }) => {
       type="number"
       min={1}
       max={9}
-      style={{
-        padding: 0,
-        height: "100%",
-        width: "100%",
-        textAlign: "center",
-      }}
+      style={error ? errorStyle : style}
     ></input>
   );
 };
