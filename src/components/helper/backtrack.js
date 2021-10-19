@@ -1,8 +1,17 @@
-const solveSudoku = function (board, changeValue) {
+const solveSudoku = function (startingBoard) {
+  let board = [];
+  for (let i = 0; i < 9; i++) {
+    board.push([]);
+    for (let j = 0; j < 9; j++) {
+      board[board.length - 1].push(startingBoard[i][j]);
+    }
+  }
+  console.log(board);
   let v = {};
   let h = {};
   let cells = {};
   let change = {};
+  const stack = [];
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board.length; j++) {
       if (!(i in h)) h[i] = {};
@@ -39,7 +48,7 @@ const solveSudoku = function (board, changeValue) {
         if (String(k) in v[j]) continue;
         if (String(k) in cells[cell]) continue;
         board[i][j] = String(k);
-        changeValue(i, j, String(k));
+        stack.push([i, j, String(k)]);
         return true;
       }
     }
@@ -56,7 +65,7 @@ const solveSudoku = function (board, changeValue) {
       if (String(k) in v[j]) continue;
       if (String(k) in cells[cell]) continue;
       board[i][j] = String(k);
-      changeValue(i, j, String(k));
+      stack.push([i, j, String(k)]);
       h[i][String(k)] = true;
       v[j][String(k)] = true;
       cells[cell][String(k)] = true;
@@ -68,13 +77,14 @@ const solveSudoku = function (board, changeValue) {
       delete cells[cell][String(k)];
       if (String(i) + "," + String(j) in change) {
         board[i][j] = "";
-        changeValue(i, j, "");
+        stack.push([i, j, ""]);
       }
     }
     return ans;
   }
 
   backtrack(0, 0);
+  return stack;
 };
 
 export default solveSudoku;

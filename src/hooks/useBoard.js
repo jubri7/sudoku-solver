@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import solveSudoku from "../components/helper/backtrack";
 
@@ -12,14 +13,25 @@ for (let i = 0; i < 9; i++) {
 
 const useBoard = () => {
   const [board, setBoard] = useState(preboard);
-  const changeCell = (i, j, val) => {
-    let newBoard = [...board];
-    newBoard[i][j] = val;
+  const changeCell = async (i, j, val) => {
+    board[i][j] = val;
+    let newBoard = [];
+    for (let k = 0; k < 9; k++) {
+      newBoard.push([]);
+      for (let l = 0; l < 9; l++) {
+        newBoard[k].push(board[k][l]);
+      }
+    }
     setBoard(newBoard);
-    console.log(board);
   };
   const solve = () => {
-    solveSudoku(board, changeCell);
+    const stack = solveSudoku(board);
+    for (let i = 0; i < stack.length; i++) {
+      const curr = stack[i];
+      setTimeout(() => {
+        changeCell(curr[0], curr[1], curr[2]);
+      }, 25 * i);
+    }
   };
   const reset = () => {
     let newBoard = [];
