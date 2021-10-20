@@ -1,8 +1,8 @@
 /* input[type="number"] {
-  background-color: green;
-  transition: back 0.35s ease-in-out;
+  background-color: white;
+  transition: background-color 0.25s ease-in-out;
 }
 
-input[type="number"]:focus {
-  background-color: white;
+input[type="number"]:active {
+  background-color: cyan;
 } */

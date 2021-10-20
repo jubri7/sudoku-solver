@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import solveSudoku from "../components/helper/backtrack";
+import solveSudoku from "../algorithm/backtrack";
 
 let preboard = [];
 let positions = {};
@@ -30,7 +30,7 @@ const useBoard = () => {
       const curr = stack[i];
       setTimeout(() => {
         changeCell(curr[0], curr[1], curr[2]);
-      }, 25 * i);
+      }, 15 * i);
     }
   };
   const reset = () => {

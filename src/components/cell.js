@@ -1,15 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./cell.css";
 
 const style = {
-  backGroundColor: "white",
+  backgroundColor: "rgb(212, 229, 247)",
   padding: 0,
   height: "100%",
   width: "100%",
   textAlign: "center",
 };
+const onChangeStyle = {
+  backgroundColor: "rgb(247, 188, 72)",
+  padding: 0,
+  height: "100%",
+  width: "100%",
+  textAlign: "center",
+  // color: "rgb(78, 116, 161)",
+  fontWeight: "strong",
+  // fontSize: "medium",
+};
 const changeStyle = {
-  backGroundColor: "green",
+  backgroundColor: "rgb(37, 115, 201)",
   padding: 0,
   height: "100%",
   width: "100%",
@@ -21,32 +31,32 @@ const errorStyle = {
   height: "100%",
   width: "100%",
   textAlign: "center",
-  backGroundColor: "red",
+  backgroundColor: "red",
 };
 
 let cellRow = null;
 let cellColumn = null;
 let cellGroup = null;
 
-const Cell = ({ i, j, board, changeCell }) => {
-  const [cellValue, setCellValue] = useState(board[i][j]);
-  const [cellStyle, setCellStyle] = useState(style);
+const Cell = ({ i, j, cellValue, changeCell }) => {
+  const [cellStyle, setCellStyle] = useState(changeStyle);
   const [error, setError] = useState(false);
-  useEffect(
-    () => {
-      setCellValue(board[i][j]);
-    },
-    [cellValue, error, board[i][j]],
-    cellStyle
-  );
+  useEffect(() => {
+    setCellStyle(changeStyle);
+    setTimeout(() => {
+      setCellStyle(style);
+    }, 10);
+  }, [cellValue, error]);
   const handleChange = (e) => {
     if (parseInt(e.target.value) > 9 || parseInt(e.target.value) < 1) {
       return;
     }
-    setCellStyle(changeStyle);
-    setCellValue(e.target.value);
     changeCell(i, j, e.target.value);
     setError(false);
+    setTimeout(() => {
+      if (e.target.value == "") setCellStyle(style);
+      else setCellStyle(onChangeStyle);
+    }, 40);
   };
 
   return (
@@ -58,6 +68,7 @@ const Cell = ({ i, j, board, changeCell }) => {
       min={1}
       max={9}
       style={cellStyle}
+      // style={{col}}
     ></input>
   );
 };

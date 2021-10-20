@@ -38,7 +38,7 @@ const App = () => {
                   i={indexI}
                   j={indexJ}
                   changeCell={changeCell}
-                  board={board}
+                  cellValue={board[indexI][indexJ]}
                 />
               </div>
             );
@@ -46,6 +46,7 @@ const App = () => {
         })}
       </div>
       <button onClick={solveButton}>Solve</button>
+      <br />
       <button onClick={resetButton}>Reset</button>
     </div>
   );
