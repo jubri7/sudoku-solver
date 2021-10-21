@@ -1,53 +1,47 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Cell from "./components/cell";
 import useBoard from "./hooks/useBoard";
-
-const row = {};
-const column = {};
-const group = {};
-
-let id = 1;
+import "./App.css";
 
 const App = () => {
-  const [board, changeCell, solve, reset] = useBoard();
+  const [board, changeCell, solve, reset, rows, columns, cellGroups] =
+    useBoard();
   useEffect(() => {}, [board]);
-  const solveButton = () => {
-    solve();
+  const solveButton = (speed) => {
+    solve(speed);
   };
   const resetButton = () => {
     reset();
   };
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          width: 500,
-          margin: "auto",
-        }}
-      >
-        {board.map((rows, indexI) => {
-          return rows.map((columns, indexJ) => {
+      <h2>Enter your Sudoku puzzle</h2>
+      <div className="board">
+        {board.map((row, indexI) => {
+          return row.map((column, indexJ) => {
             return (
-              <div
-                style={{ height: 40, maxWidth: "80%", textAlign: "center" }}
-                key={`${indexI},${indexJ}`}
-              >
+              <div className="boardCells" key={`${indexI},${indexJ}`}>
                 <Cell
                   i={indexI}
                   j={indexJ}
                   changeCell={changeCell}
                   cellValue={board[indexI][indexJ]}
+                  rows={rows}
+                  columns={columns}
+                  cellGroups={cellGroups}
                 />
               </div>
             );
           });
         })}
       </div>
-      <button onClick={solveButton}>Solve</button>
-      <br />
-      <button onClick={resetButton}>Reset</button>
+      <div className="buttons">
+        <button onClick={() => solveButton(false)}>Backtrack</button>
+        <br />
+        <button onClick={() => solveButton(true)}>Solution</button>
+        <br />
+        <button onClick={resetButton}>Reset</button>
+      </div>
     </div>
   );
 };

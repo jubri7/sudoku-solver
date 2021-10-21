@@ -1,3 +1,5 @@
+import { cellGroupCalculator } from "./cellGroupCalculator";
+
 const solveSudoku = function (startingBoard) {
   let board = [];
   for (let i = 0; i < 9; i++) {
@@ -6,7 +8,6 @@ const solveSudoku = function (startingBoard) {
       board[board.length - 1].push(startingBoard[i][j]);
     }
   }
-  console.log(board);
   let v = {};
   let h = {};
   let cells = {};
@@ -16,14 +17,16 @@ const solveSudoku = function (startingBoard) {
     for (let j = 0; j < board.length; j++) {
       if (!(i in h)) h[i] = {};
       if (!(j in v)) v[j] = {};
-      let cell = 1;
-      if (i >= 6) cell += 6;
-      else if (i >= 3) cell += 3;
-      if (j >= 6) cell += 2;
-      else if (j >= 3) cell += 1;
+      let cell = cellGroupCalculator(i, j);
       if (!(cell in cells)) cells[cell] = {};
       if (board[i][j] === "") change[String(i) + "," + String(j)] = true;
       else {
+        if (
+          [board[i][j]] in h[i] ||
+          [board[i][j]] in v[j] ||
+          board[i][j] in cells[cell]
+        )
+          return stack;
         h[i][board[i][j]] = true;
         v[j][board[i][j]] = true;
         cells[cell][board[i][j]] = true;
@@ -36,11 +39,7 @@ const solveSudoku = function (startingBoard) {
 
     if (i === 8 && j === 8 && !("8,8" in change)) return true;
 
-    let cell = 1;
-    if (i >= 6) cell += 6;
-    else if (i >= 3) cell += 3;
-    if (j >= 6) cell += 2;
-    else if (j >= 3) cell += 1;
+    let cell = cellGroupCalculator(i, j);
 
     if (i === 8 && j === 8 && "8,8" in change) {
       for (let k = 1; k < 10; k++) {

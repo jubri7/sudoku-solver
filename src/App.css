@@ -1,0 +1,46 @@
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  margin: auto;
+}
+
+.boardCells {
+  height: 40px;
+  max-width: 80%;
+  text-align: center;
+}
+.boardCells:nth-child(n + 19):nth-child(-n + 27) {
+  border-bottom: black solid 4.5px;
+}
+.boardCells:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: black solid 4.5px;
+}
+.boardCells:nth-child(n + 73):nth-child(-n + 81) {
+  border-bottom: black solid 4.5px;
+}
+.boardCells:nth-child(3n) {
+  border-right: black solid 3.5px;
+}
+
+h2 {
+  margin: auto;
+  text-align: center;
+}
+
+.buttons {
+  margin: auto;
+  text-align: center;
+  margin-top: 10px;
+}
+
+button {
+  width: 70px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: ghostwhite;
+}
+
+button:active {
+  background-color: rgb(37, 115, 201);
+}

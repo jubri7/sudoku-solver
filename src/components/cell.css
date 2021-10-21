@@ -1,8 +1,40 @@
-/* input[type="number"] {
-  background-color: white;
-  transition: background-color 0.25s ease-in-out;
+.regular {
+  background-color: rgb(212, 229, 247);
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
 
-input[type="number"]:active {
-  background-color: cyan;
+.onChange {
+  background-color: rgb(247, 188, 72);
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-weight: strong;
+}
+
+.animation {
+  background-color: rgb(37, 115, 201);
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.error {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: red;
+}
+
+/* .row {
+  border-bottom: solid black 10px;
+}
+
+.column {
+  border-right: solid black 5px;
 } */
