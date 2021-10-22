@@ -36,7 +36,7 @@ const App = () => {
         })}
       </div>
       <div className="buttons">
-        <button onClick={() => solveButton(false)}>Backtrack</button>
+        <button onClick={() => solveButton(false)}>Backtrack Algo</button>
         <br />
         <button onClick={() => solveButton(true)}>Solution</button>
         <br />
