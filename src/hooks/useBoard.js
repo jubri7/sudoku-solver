@@ -52,7 +52,7 @@ const useBoard = () => {
         const curr = stack[i];
         setTimeout(() => {
           changeCell(curr[0], curr[1], curr[2]);
-        }, 8 * i);
+        }, 10 * i);
       }
     } else {
       for (let i = 0; i < stack.length; i++) {

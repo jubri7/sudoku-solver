@@ -25,8 +25,10 @@ const solveSudoku = function (startingBoard) {
           [board[i][j]] in h[i] ||
           [board[i][j]] in v[j] ||
           board[i][j] in cells[cell]
-        )
+        ) {
+          alert("Enter valid puzzle");
           return stack;
+        }
         h[i][board[i][j]] = true;
         v[j][board[i][j]] = true;
         cells[cell][board[i][j]] = true;
