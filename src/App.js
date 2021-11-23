@@ -36,11 +36,17 @@ const App = () => {
         })}
       </div>
       <div className="buttons">
-        <button onClick={() => solveButton(false)}>Backtrack Algo</button>
+        <button id="backtrack-button" onClick={() => solveButton(false)}>
+          Backtrack Algo
+        </button>
         <br />
-        <button onClick={() => solveButton(true)}>Solution</button>
+        <button id="solution-button" onClick={() => solveButton(true)}>
+          Solution
+        </button>
         <br />
-        <button onClick={resetButton}>Reset</button>
+        <button id="reset-button" onClick={resetButton}>
+          Reset
+        </button>
       </div>
     </div>
   );

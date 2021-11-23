@@ -32,9 +32,39 @@ it("input default to regular class", async () => {
   expect(text).toEqual("regular");
 });
 
-it("input changes class", async () => {
+it("input changes class to onChange", async () => {
   await page.focus("input");
   await page.keyboard.type("1");
   const text = await page.$eval("input", (el) => el.className);
   expect(text).toEqual("onChange");
+});
+
+it("input changes class to error", async () => {
+  await page.focus("#n00");
+  await page.keyboard.type("1");
+  await page.focus("#n01");
+  await page.keyboard.type("1");
+  const text = await page.$eval("#n01", (el) => el.className);
+  expect(text).toEqual("error");
+});
+
+it("reset btn clears board", async () => {
+  await page.focus("#n00");
+  await page.keyboard.type("1");
+  await page.focus("#n01");
+  await page.keyboard.type("1");
+  await page.click("#reset-button");
+  const text = await page.$eval("#n01", (el) => el.value);
+  expect(text).toEqual("");
+});
+
+it("doesnt start algo if error is present in board", async () => {
+  await page.on("dialog", async (dialog) => await dialog.accept());
+  await page.focus("#n00");
+  await page.keyboard.type("1");
+  await page.focus("#n01");
+  await page.keyboard.type("1");
+  await page.click("#solution-button");
+  const text = await page.$eval("#n88", (el) => el.value);
+  expect(text).toEqual("");
 });
