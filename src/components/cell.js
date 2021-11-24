@@ -30,6 +30,7 @@ const Cell = ({ i, j, cellValue, changeCell, rows, columns, cellGroups }) => {
 
   return (
     <input
+      id={`n${i}${j}`}
       className={cellStyle}
       value={cellValue || ""}
       onChange={handleChange}
