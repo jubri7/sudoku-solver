@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Cell from "./components/cell";
 import useBoard from "./hooks/useBoard";
 import "./App.css";
+import "bootstrap/dist/css";
 
 const App = () => {
   const [board, changeCell, solve, reset, rows, columns, cellGroups] =
