@@ -1,7 +1,10 @@
 .board {
-  display: flex;
-  flex-wrap: wrap;
-  width: 500px;
+  width: fit-content;
+  margin: auto;
+}
+
+.rows {
+  width: 50%;
   margin: auto;
 }
 
@@ -10,17 +13,30 @@
   max-width: 80%;
   text-align: center;
 }
-.boardCells:nth-child(n + 19):nth-child(-n + 27) {
-  border-bottom: black solid 4.5px;
-}
-.boardCells:nth-child(n + 46):nth-child(-n + 54) {
-  border-bottom: black solid 4.5px;
-}
-.boardCells:nth-child(n + 73):nth-child(-n + 81) {
-  border-bottom: black solid 4.5px;
-}
+
 .boardCells:nth-child(3n) {
-  border-right: black solid 3.5px;
+  border-right: black solid 5.5px;
+}
+
+#n20,
+#n21,
+#n22,
+#n23,
+#n24,
+#n25,
+#n26,
+#n27,
+#n28,
+#n50,
+#n51,
+#n52,
+#n53,
+#n54,
+#n55,
+#n56,
+#n57,
+#n58 {
+  border-bottom: black solid 5.5px;
 }
 
 h2 {
@@ -28,7 +44,7 @@ h2 {
   text-align: center;
 }
 
-.buttons {
+/* .buttons {
   margin: auto;
   text-align: center;
   margin-top: 10px;
@@ -43,4 +59,4 @@ button {
 
 button:active {
   background-color: rgb(37, 115, 201);
-}
+} */
