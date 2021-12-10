@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import solveSudoku from "../algorithms/backtrack";
 import { cellGroupCalculator } from "../algorithms/cellGroupCalculator";

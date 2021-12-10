@@ -1,9 +1,10 @@
 .regular {
-  background-color: rgb(212, 229, 247);
+  background-color: #212529;
   padding: 0;
   height: 100%;
   width: 100%;
   text-align: center;
+  color: white;
 }
 
 .onChange {
@@ -31,10 +32,13 @@
   background-color: red;
 }
 
-/* .row {
-  border-bottom: solid black 10px;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.column {
-  border-right: solid black 5px;
-} */
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
