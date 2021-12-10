@@ -16,7 +16,7 @@ const App = () => {
   };
   return (
     <div className="board">
-      <h2 className="container">Enter your Sudoku puzzle</h2>
+      <h2 className="container ">Enter your Sudoku puzzle</h2>
       <div className="container-md">
         {board.map((row, indexI) => {
           return (
@@ -44,31 +44,32 @@ const App = () => {
         })}
       </div>
       <div className="container">
-        <div className="row">
+        <div className="row justify-content-center mt-1">
           <button
             id="backtrack-button"
-            className="bg-primary"
+            className="bg-primary col-3 mx-1"
             onClick={() => solveButton(false)}
           >
             Backtrack Algo
           </button>
+          <button
+            id="solution-button"
+            className="bg-success col-3 mx-1"
+            onClick={() => solveButton(true)}
+          >
+            Instant Solution
+          </button>
         </div>
         <br />
-        <button
-          id="solution-button"
-          className="bg-primary row"
-          onClick={() => solveButton(true)}
-        >
-          Instant Solution
-        </button>
-        <br />
-        <button
-          id="reset-button"
-          className="bg-primary row"
-          onClick={resetButton}
-        >
-          Reset
-        </button>
+        <div className="row justify-content-center">
+          <button
+            id="reset-button"
+            className="bg-danger row col-2"
+            onClick={resetButton}
+          >
+            Reset
+          </button>
+        </div>
       </div>
     </div>
   );

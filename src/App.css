@@ -44,19 +44,6 @@ h2 {
   text-align: center;
 }
 
-/* .buttons {
-  margin: auto;
-  text-align: center;
-  margin-top: 10px;
+#reset-button {
+  justify-content: center;
 }
-
-button {
-  width: 70px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  background-color: ghostwhite;
-}
-
-button:active {
-  background-color: rgb(37, 115, 201);
-} */
